@@ -1,28 +1,51 @@
-# React + TypeScript + Vite
+# 🧟📱 Iphone Nightmares
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Project Image](src/assets/iphone-nightmares.png)
 
-Currently, two official plugins are available:
+A 3d Model visualization project where the user can interact with the model view
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description
 
-## Expanding the ESLint configuration
+🎃 "Iphone Nightmares" is a creative project featuring 3D renders inspired by Halloween, developed as a submission for the [004 Threejs Journey Challenge](https://threejs-journey.com/challenges/004-halloween). In this challenge, we explore the world of 3D renders and Halloween themes, drawing inspiration from each iPhone icon displayed on the screen.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Setup
 
-- Configure the top-level `parserOptions` property like this:
+### Install dependencies
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+Once you've cloned the repository install the required dependencies:
+
+```sh
+yarn 
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# IphoneNightmare
+## Run
+
+### Development server
+
+To run the project in development mode run:
+
+```sh
+yarn start
+```
+
+
+## To Visit App:
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## Technologies Used
+
+- JavaScript
+- React
+- Typescript
+- Three.js 
+- React-Three/Fiber
+- React-Three/Drei
+
+## Try it out!
+
+<a href="https://3d-modeling.vercel.app/" target="_blank">3d Model</a>
+
+### Thank you 🎃
+
+### ⚰⚰️ Gustavo Magnago 🧟
