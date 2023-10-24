@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-    "keywords": [
+  "keywords": [
     "react",
     "react-component",
     "threejs",
@@ -21,7 +21,10 @@
   "dependencies": {
     "@react-three/drei": "^9.88.3",
     "@react-three/fiber": "^8.14.6",
+    "@splinetool/loader": "^0.9.486",
     "@splinetool/r3f-spline": "^1.0.2",
+    "@splinetool/react-spline": "^2.2.6",
+    "@types/three": "^0.157.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "three": "^0.157.0"
@@ -29,13 +32,15 @@
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
-    "eslint": "^8.45.0",
+    "eslint": "^8.52.0",
+    "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-eslint": "^1.8.1"
   }
 }
