@@ -44,7 +44,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Try it out!
 
-<a href="https://3d-modeling.vercel.app/" target="_blank">3d Model</a>
+<a href="https://gusmagnago.github.io/Iphone-nightmares" target="_blank">Iphone Nightmares</a>
 
 ### Thank you 🎃
 
