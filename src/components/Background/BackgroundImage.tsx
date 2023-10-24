@@ -4,7 +4,7 @@ import { GLTF } from 'three-stdlib';
 import JackOLantern from '../JackOLantern/JackOLantern';
 import Bat from '../Bat/Bat';
 import Cat from '../Cat/Cat';
-// import Bat from '../Bat/Bat';
+
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -27,12 +27,12 @@ export default function BackgroundImage() {
 
 	const jackOLantern = [
 		{
-			position: new THREE.Vector3(-30, -70, 15),
+			position: new THREE.Vector3(-45, -70, 15),
 			rotation: new THREE.Euler(0, 0.35, 0),
 			scale: 0.78,
 		},
 		{
-			position: new THREE.Vector3(-10, -90, 25),
+			position: new THREE.Vector3(-30, -90, 25),
 			rotation: new THREE.Euler(0, -0.17, 0),
 			scale: 0.49,
 		},
@@ -61,10 +61,19 @@ export default function BackgroundImage() {
 		},
 	];
 
-	const catPosition = new THREE.Vector3(7.91, -56.92, 8.39);
+	const catPosition = new THREE.Vector3(5, -110, 25);
 
 	return (
 		<group name='background' position={[0, 0, -500]}>
+			<mesh
+				name='moon'
+				geometry={nodes.moon.geometry}
+				material={nodes.moon.material}
+				castShadow
+				receiveShadow
+				position={[-70, 0, 2]}
+			/>
+			<Cat position={catPosition} rotation={undefined} scale={0} />
 			{jackOLantern.map(({ position, rotation, scale }, index) => (
 				<JackOLantern
 					position={position}
@@ -81,15 +90,6 @@ export default function BackgroundImage() {
 					key={index}
 				/>
 			))}
-			<mesh
-				name='moon'
-				geometry={nodes.moon.geometry}
-				material={nodes.moon.material}
-				castShadow
-				receiveShadow
-				position={[-70, 0, 2]}
-			/>
-			<Cat position={catPosition} rotation={undefined} scale={0} />
 		</group>
 	);
 }
