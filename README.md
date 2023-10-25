@@ -44,7 +44,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Try it out!
 
-<a href="https://gusmagnago.github.io/Iphone-nightmares" target="_blank">Iphone Nightmares</a>
+<a href="https://gusmagnago.github.io/iphone-nightmares" target="_blank">Iphone Nightmares</a>
 
 ### Thank you 🎃
 
