@@ -13,6 +13,5 @@ export default defineConfig(({ command }) => {
 	if (command !== 'serve') {
 		config.base = '/iphone-nightmares/';
 	}
-
 	return config;
 });
