@@ -1,8 +1,12 @@
+
 import BackgroundImage from '../Background/BackgroundImage';
-import Gadgets from '../Gadgets/Gadgets';
+import Footer from '../Footer/Footer';
+import Widgets from '../Widgets/Widgets';
 
 import Info from '../Info/Info';
 import Iphone from '../Iphone/Iphone';
+import FirstRow from '../Row/FirstRow/FirstRow';
+import SecondRow from '../Row/SecondRow/SecondRow';
 
 const Scene = ({ ...props }) => {
 	return (
@@ -11,8 +15,11 @@ const Scene = ({ ...props }) => {
 				<scene>
 					<Info />
 					<Iphone />
+					<Widgets />
 					<BackgroundImage />
-					<Gadgets />
+					<FirstRow/>
+					<SecondRow />
+					<Footer />
 				</scene>
 			</group>
 		</>

@@ -1,9 +1,11 @@
 import * as THREE from 'three';
-import { useGLTF } from '@react-three/drei';
+import {   useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 import JackOLantern from '../JackOLantern/JackOLantern';
 import Bat from '../Bat/Bat';
 import Cat from '../Cat/Cat';
+import MeshComponent from '../MeshComponent/MeshComponent';
+
 
 
 type GLTFResult = GLTF & {
@@ -40,12 +42,12 @@ export default function BackgroundImage() {
 
 	const bats = [
 		{
-			position: new THREE.Vector3(-48.82, 4.98, 25),
+			position: new THREE.Vector3(-48.82, 25, 25),
 			rotation: new THREE.Euler(0.24, 0.77, -0.14),
 			scale: 0.23,
 		},
 		{
-			position: new THREE.Vector3(-66.73, 62.47, 20),
+			position: new THREE.Vector3(-66.73, -15, 20),
 			rotation: new THREE.Euler(0.58, 0.62, -0.08),
 			scale: 0.23,
 		},
@@ -61,19 +63,11 @@ export default function BackgroundImage() {
 		},
 	];
 
-	const catPosition = new THREE.Vector3(5, -110, 25);
+	const catPosition = new THREE.Vector3(5, -110, 20);
 
 	return (
-		<group name='background' position={[0, 0, -500]}>
-			<mesh
-				name='moon'
-				geometry={nodes.moon.geometry}
-				material={nodes.moon.material}
-				castShadow
-				receiveShadow
-				position={[-70, 0, 2]}
-			/>
-			<Cat position={catPosition} rotation={undefined} scale={0} />
+		<group name='background' position={[0, -19, 0]}>
+			<Cat position={catPosition} />
 			{jackOLantern.map(({ position, rotation, scale }, index) => (
 				<JackOLantern
 					position={position}
@@ -82,14 +76,26 @@ export default function BackgroundImage() {
 					key={index}
 				/>
 			))}
-			{bats.map(({ position, rotation, scale }, index) => (
-				<Bat
-					position={position}
-					rotation={rotation}
-					scale={scale}
-					key={index}
-				/>
-			))}
+			<group position={[0, -50, 0]}>
+				<MeshComponent
+					name='moon'
+					geometry={nodes.moon.geometry}
+					material={nodes.moon.material}
+					meshPosition={[-70, 0, 0]}
+				>
+					<meshStandardMaterial  color={'#FFFFFF'} emissive={'#FDC07B'} envMapIntensity={1} />
+				</MeshComponent>
+				<group position={[0, 0, 0]}>
+					{bats.map(({ position, rotation, scale }, index) => (
+						<Bat
+							position={position}
+							rotation={rotation}
+							scale={scale}
+							key={index}
+						/>
+					))}
+				G</group>
+			</group>
 		</group>
 	);
 }

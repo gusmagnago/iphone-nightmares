@@ -14,7 +14,7 @@
         "halloween"
     ],
     "scripts": {
-        "start": "vite",
+        "start": "vite --force",
         "build": "tsc && vite build",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview"
@@ -22,14 +22,17 @@
     "dependencies": {
         "@react-three/drei": "^9.88.3",
         "@react-three/fiber": "^8.14.6",
+        "@react-three/postprocessing": "^2.15.8",
         "@types/three": "^0.157.0",
+        "postprocessing": "^6.33.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "three": "^0.157.0"
+        "three": "^0.157.0",
+        "three-stdlib": "^2.28.3"
     },
     "devDependencies": {
-        "@types/react": "^18.2.15",
-        "@types/react-dom": "^18.2.7",
+        "@types/react": "^18.2.33",
+        "@types/react-dom": "^18.2.14",
         "@typescript-eslint/eslint-plugin": "^6.9.0",
         "@typescript-eslint/parser": "^6.9.0",
         "@vitejs/plugin-react-swc": "^3.3.2",

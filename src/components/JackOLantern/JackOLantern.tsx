@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import MeshComponent from '../MeshComponent/MeshComponent';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -24,36 +25,28 @@ const JackOLantern = ({ position, rotation, scale }: ObjectI) => {
 		<group name='jack' position={position} rotation={rotation} scale={scale}>
 			<group position={position}>
 				<group name='topJack' position={[0.35, 18.51, -23.81]}>
-					<mesh
-						name='sphere'
+					<MeshComponent
 						geometry={nodes.sphere.geometry}
 						material={nodes.sphere.material}
-						castShadow
-						receiveShadow
-						position={[-0.06, 0.19, -0.16]}
-						rotation={[-Math.PI / 2, 0, 0]}
-						scale={1.01}
+						meshPosition={[-0.06, 0.19, -0.16]}
+						meshRotation={[-Math.PI / 2, 0, 0]}
+						meshScale={1.01}
 					/>
-					<mesh
-						name='star'
+					<MeshComponent
 						geometry={nodes.star.geometry}
 						material={nodes.star.material}
-						castShadow
-						receiveShadow
-						position={[0, -3.79, 0]}
-						rotation={[-Math.PI / 2, 0, 0]}
-						scale={1.01}
+						meshPosition={[0, -3.79, 0]}
+						meshRotation={[-Math.PI / 2, 0, 0]}
+						meshScale={1.01}
 					/>
 				</group>
-				<mesh
+				<MeshComponent
 					geometry={nodes.jackBody.geometry}
 					material={nodes.jackBody.material}
-					castShadow
-					receiveShadow
-					position={[-0.08, -7, -23]}
+					meshPosition={[-0.08, -7, -23]}
 				>
 					<meshBasicMaterial color={'#f27d14'} />
-				</mesh>
+				</MeshComponent>
 			</group>
 		</group>
 	);

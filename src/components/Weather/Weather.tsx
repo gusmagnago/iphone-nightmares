@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 import Bat from '../Bat/Bat';
+import MeshComponent from '../MeshComponent/MeshComponent';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -45,70 +46,54 @@ const Weather = ({ position }: ObjectPos) => {
 				<group name='cloudsGroup' position={[3.75, -1.5, 2]}>
 					<group name='clouds'>
 						<group name='weatherClouds' position={[-18.5, -6, 6]}>
-							<mesh
+							<MeshComponent
 								name='weatherCloud'
 								geometry={nodes.weatherCloud1.geometry}
 								material={nodes.weatherCloud1.material}
-								castShadow
-								receiveShadow
-								position={[-0.25, -3.5, -4]}
+								meshPosition={[-0.25, -3.5, -4]}
 							/>
-							<mesh
+							<MeshComponent
 								geometry={nodes.weatherCloud2.geometry}
 								material={nodes.weatherCloud2.material}
-								castShadow
-								receiveShadow
-								position={[0.75, -3.5, 0]}
+								meshPosition={[0.75, -3.5, 0]}
 							/>
-							<mesh
+							<MeshComponent
 								geometry={nodes.weatherCloud3.geometry}
 								material={nodes.weatherCloud3.material}
-								castShadow
-								receiveShadow
-								position={[-1.25, 0.5, -2]}
+								meshPosition={[-1.25, 0.5, -2]}
 							/>
-							<mesh
+							<MeshComponent
 								geometry={nodes.weatherCloud4.geometry}
 								material={nodes.weatherCloud4.material}
-								castShadow
-								receiveShadow
-								position={[5.75, -1.5, -4]}
+								meshPosition={[5.75, -1.5, -4]}
 							/>
 						</group>
 						<group name='weatherClouds1'>
-							<mesh
+							<MeshComponent
 								name='weatherCloud4'
 								geometry={nodes.weatherCloud5.geometry}
 								material={nodes.weatherCloud5.material}
-								castShadow
-								receiveShadow
-								position={[-8.75, 0.5, -2.5]}
+								meshPosition={[-8.75, 0.5, -2.5]}
 							/>
-							<mesh
+							<MeshComponent
 								name='weatherCloud5'
 								geometry={nodes.weatherCloud6.geometry}
 								material={nodes.weatherCloud6.material}
-								castShadow
-								receiveShadow
-								position={[1.25, 0.5, -4.5]}
+								meshPosition={[1.25, 0.5, -4.5]}
 							/>
-							<mesh
+							<MeshComponent
 								name='weatherCloud6'
 								geometry={nodes.weatherCloud7.geometry}
 								material={nodes.weatherCloud7.material}
-								castShadow
-								receiveShadow
-								position={[1.25, -3.5, -3.5]}
+								meshPosition={[1.25, -3.5, -3.5]}
 							/>
 						</group>
 					</group>
 				</group>
-				<mesh
+				<MeshComponent
 					geometry={nodes.weatherMoon.geometry}
 					material={nodes.weatherMoon.material}
-					castShadow
-					receiveShadow
-					position={[-8, 0, -5]}
+					meshPosition={[-8, 0, -5]}
 				/>
 			</group>
 			{weatherBats.map(({ position, rotation, scale }, index) => (
@@ -119,50 +104,38 @@ const Weather = ({ position }: ObjectPos) => {
 					key={index}
 				/>
 			))}
-			<mesh
+			<MeshComponent
 				name='weatherBG'
 				geometry={nodes.weatherBG.geometry}
 				material={nodes.weatherBG.material}
-				castShadow
-				receiveShadow
-				position={[0, 6.8, -1.25]}
+				meshPosition={[0, 6.8, -1.25]}
 			/>
 			<group name='weatherValGroup' position={[-11.34, 32.36, 5]}>
-				<mesh
+				<MeshComponent
 					geometry={nodes.weatherValItem1.geometry}
 					material={nodes.weatherValItem1.material}
-					castShadow
-					receiveShadow
-					position={[9, -1, 0]}
+					meshPosition={[9, -1, 0]}
 				/>
-				<mesh
+				<MeshComponent
 					geometry={nodes.weatherValItem2.geometry}
 					material={nodes.weatherValItem2.material}
-					castShadow
-					receiveShadow
-					position={[-9, 1, 0]}
+					meshPosition={[-9, 1, 0]}
 				/>
 			</group>
-			<mesh
+			<MeshComponent
 				geometry={nodes.weatherCity.geometry}
 				material={nodes.weatherCity.material}
-				castShadow
-				receiveShadow
-				position={[-21.7, 43.36, 5]}
+				meshPosition={[-21.7, 43.36, 5]}
 			/>
-			<mesh
+			<MeshComponent
 				geometry={nodes.weatherDesc.geometry}
 				material={nodes.weatherDesc.material}
-				castShadow
-				receiveShadow
-				position={[-7.6, -19.64, 5]}
+				meshPosition={[-7.6, -19.64, 5]}
 			/>
-			<mesh
+			<MeshComponent
 				geometry={nodes.weatherTitle.geometry}
 				material={nodes.weatherTitle.material}
-				castShadow
-				receiveShadow
-				position={[3.3, -51.64, -1.25]}
+				meshPosition={[3.3, -51.64, -1.25]}
 			/>
 		</group>
 	);
