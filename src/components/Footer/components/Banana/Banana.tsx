@@ -22,10 +22,6 @@ const Banana = ({
 	const { bananaSkin: bananaSkinMaterial, bananaInner: bananaInnerMaterial } =
     materials;
 
-	// position={[-0.94, 2.51, 1.74]}
-	// 		rotation={[Math.PI / 2, 0, 0]}
-	// 		scale={0.13}
-
 	return (
 		<group position={position} rotation={rotation} scale={scale}>
 			<MeshComponent

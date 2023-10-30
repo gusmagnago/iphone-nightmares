@@ -1,32 +1,15 @@
 import * as THREE from 'three';
-import {   useGLTF } from '@react-three/drei';
-import { GLTF } from 'three-stdlib';
 import JackOLantern from '../JackOLantern/JackOLantern';
 import Bat from '../Bat/Bat';
 import Cat from '../Cat/Cat';
-import MeshComponent from '../MeshComponent/MeshComponent';
+import { CatGLTFNodes } from '../Cat/Cat.types';
+import { BGGLTFResult } from './BackgroundImage.types';
+import Moon, { MoonGLTFNodes } from '../Moon/Moon';
+import { arrayToVector3 } from '../../utils';
+import { JackOLanternGLTFNodes } from '../JackOLantern/JackOLantern.types';
+import { BatGLTFNodes } from '../Bat/Bat.types';
 
-
-
-type GLTFResult = GLTF & {
-  nodes: {
-    sphere: THREE.Mesh;
-    star: THREE.Mesh;
-    jackBody: THREE.Mesh;
-    jackEye: THREE.Mesh;
-    jackMouth: THREE.Mesh;
-    wing: THREE.Mesh;
-    teeth: THREE.Mesh;
-    mouth: THREE.Mesh;
-    horn: THREE.Mesh;
-    body: THREE.Mesh;
-    moon: THREE.Mesh;
-  };
-};
-
-export default function BackgroundImage() {
-	const { nodes } = useGLTF('./iphoneNightmares.gltf') as GLTFResult;
-
+const BackgroundImage = ({ nodes }: BGGLTFResult) => {
 	const jackOLantern = [
 		{
 			position: new THREE.Vector3(-45, -70, 15),
@@ -67,35 +50,36 @@ export default function BackgroundImage() {
 
 	return (
 		<group name='background' position={[0, -19, 0]}>
-			<Cat position={catPosition} />
+			<Cat position={catPosition} nodes={nodes as CatGLTFNodes} />
 			{jackOLantern.map(({ position, rotation, scale }, index) => (
 				<JackOLantern
 					position={position}
 					rotation={rotation}
 					scale={scale}
 					key={index}
+					nodes={nodes as JackOLanternGLTFNodes}
 				/>
 			))}
 			<group position={[0, -50, 0]}>
-				<MeshComponent
-					name='moon'
-					geometry={nodes.moon.geometry}
-					material={nodes.moon.material}
-					meshPosition={[-70, 0, 0]}
-				>
-					<meshStandardMaterial  color={'#FFFFFF'} emissive={'#FDC07B'} envMapIntensity={1} />
-				</MeshComponent>
+				<Moon
+					position={arrayToVector3([-30, 0, 0])}
+					nodes={nodes as MoonGLTFNodes}
+				/>
 				<group position={[0, 0, 0]}>
 					{bats.map(({ position, rotation, scale }, index) => (
 						<Bat
+							key={index}
 							position={position}
 							rotation={rotation}
 							scale={scale}
-							key={index}
+							nodes={nodes as BatGLTFNodes}
 						/>
 					))}
-				G</group>
+          G
+				</group>
 			</group>
 		</group>
 	);
-}
+};
+
+export default BackgroundImage;

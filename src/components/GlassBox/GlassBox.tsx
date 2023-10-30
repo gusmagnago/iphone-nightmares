@@ -62,13 +62,18 @@ const GlassBox = ({
 					name='boxTop'
 					geometry={footerBoxTop}
 					material={topMaterial}
-					meshPosition={[0.26, 0.09, 28]}
+					meshPosition={[0.26, 0.09, 29]}
+					materialType='metallic'
+					variant='gray'
 				/>
 				<MeshComponent
 					name='boxGlass'
 					geometry={footerBoxGlass}
 					material={glassMaterial}
 					meshPosition={[0.48, 0.25, -20]}
+					materialType='glass'
+					variant='greenEw'
+					glassThickness={5}
 				/>
 				<group name='boxLegs' position={[0, 0, 5]}>
 					{footerBoxLegsPosition.map((legPosition, index) => (
@@ -79,6 +84,8 @@ const GlassBox = ({
 							material={legMaterial}
 							meshPosition={legPosition}
 							meshRotation={[Math.PI / 2, 0, 0]}
+							materialType='metallic'
+							variant='black'
 						/>
 					))}
 				</group>
@@ -88,6 +95,8 @@ const GlassBox = ({
 				geometry={footerBoxBase}
 				material={baseMaterial}
 				meshPosition={basePosition}
+				materialType='plastic'
+				variant='black'
 			/>
 		</group>
 	);

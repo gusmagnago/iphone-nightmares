@@ -12,7 +12,7 @@ import Health from './components/Health/Health';
 const FirstRow = () => {
 	const { nodes } = useGLTF('./iphoneNightmares.gltf') as FirstRowGLTFResult;
 	return (
-		<group position={arrayToVector3([10, 90, 20])}>
+		<group position={arrayToVector3([10, 90, 23])}>
 			<Health nodes={nodes as HealthGLTFNodes} position={arrayToVector3([-90, 0, 0])}/>
 			<SoundCloud nodes={nodes as SoundCloudGLTFNodes} position={arrayToVector3([-30, 0, 0])}/>
 			<X nodes={nodes as XGLTFNodes} position={arrayToVector3([30, 0, 0])}/>

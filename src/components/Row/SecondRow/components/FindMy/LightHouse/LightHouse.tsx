@@ -18,12 +18,16 @@ const LightHouse = ({
 				geometry={whiteGeometry.geometry}
 				material={whiteGeometry.material}
 				meshPosition={whiteBodyPos}
+				materialType='metallic'
+				variant='white'
 			/>
 			<MeshComponent
 				name='LighthouseBodyPartRed'
 				geometry={redGeometry.geometry}
 				material={redGeometry.material}
 				meshPosition={redBodyPos}
+				materialType='metallic'
+				variant='redBloody'
 			/>
 		</>
 	);

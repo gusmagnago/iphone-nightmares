@@ -23,27 +23,31 @@ const Candle = ({ position, scale, nodes }: ObjectI & CandleGLTFResult) => {
 			scale={scale}
 		>
 			<MeshComponent
-				geometry={nodes.cameraCandle.geometry}
-				material={nodes.cameraCandle.material}
+				geometry={nodes?.cameraCandle.geometry}
+				material={nodes?.cameraCandle.material}
 				meshPosition={[1, 21.19, -1.15]}
 				meshRotation={[-1.62, -0.06, 1.06]}
 				meshScale={[0.09, 0.21, 0.93]}
 			/>
 			<MeshComponent
 				name='flame'
-				geometry={nodes.cameraCandleFlame.geometry}
-				material={nodes.cameraCandleFlame.material}
+				geometry={nodes?.cameraCandleFlame.geometry}
+				material={nodes?.cameraCandleFlame.material}
 				meshPosition={[1.22, 63.42, -1.63]}
 				meshRotation={[3.12, 0, 0]}
 				meshScale={[0.11, 0.13, 0.13]}
+				materialType='shiny'
+				variant='greenEw'
 			/>
 			<MeshComponent
 				name='candle'
-				geometry={nodes.cameraCandleCandle.geometry}
-				material={nodes.cameraCandleCandle.material}
+				geometry={nodes?.cameraCandleCandle.geometry}
+				material={nodes?.cameraCandleCandle.material}
 				meshPosition={[3.53, -82.27, 0]}
 				meshRotation={[0, -0.02, 0]}
 				meshScale={1.74}
+				materialType='plastic'
+				variant='light'
 			/>
 		</group>
 

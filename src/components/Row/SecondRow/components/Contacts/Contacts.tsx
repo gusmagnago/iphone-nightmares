@@ -30,6 +30,8 @@ const Camera = ({ position, nodes }: ObjectI & ContactsGLTFResult) => {
 					material={bookComBodyBar.material}
 					meshPosition={[newX, yVal, -33]}
 					meshScale={[3.72, 5.16, 2.52]}
+					materialType='metallic'
+					variant='black'
 				/>
 			);
 		});
@@ -44,6 +46,8 @@ const Camera = ({ position, nodes }: ObjectI & ContactsGLTFResult) => {
 				geometry={contactsTitle.geometry}
 				material={contactsTitle.material}
 				meshPosition={[2, -30, 0]}
+				materialType='plastic'
+				variant='white'
 			/>
 			<group name='bookComp' position={[0, 0, 15]}>
 				<MeshComponent
@@ -51,6 +55,8 @@ const Camera = ({ position, nodes }: ObjectI & ContactsGLTFResult) => {
 					geometry={bookComCircle.geometry}
 					material={bookComCircle.material}
 					meshPosition={[0, 0, 14]}
+					materialType='metallic'
+					variant='black'
 				/>
 				<MeshComponent
 					name='bookComCStar'
@@ -58,6 +64,8 @@ const Camera = ({ position, nodes }: ObjectI & ContactsGLTFResult) => {
 					material={bookComCStar.material}
 					meshPosition={[0, 0, 13]}
 					meshRotation={[0, 0, -1.83]}
+					materialType='metallic'
+					variant='black'
 				/>
 				<group
 					name='bookComBody'
@@ -71,6 +79,8 @@ const Camera = ({ position, nodes }: ObjectI & ContactsGLTFResult) => {
 						meshPosition={[61.51, 94.13, 0.38]}
 						meshRotation={[0, Math.PI / 2, 0]}
 						meshScale={[0.24, 0.99, 0.04]}
+						materialType='metallic'
+						variant='black'
 					/>
 					<MeshComponent
 						name='bookComBodySide1'
@@ -79,6 +89,8 @@ const Camera = ({ position, nodes }: ObjectI & ContactsGLTFResult) => {
 						meshPosition={[-64.9, 94.13, 0.38]}
 						meshRotation={[0, Math.PI / 2, 0]}
 						meshScale={[0.24, 0.99, 0.04]}
+						materialType='metallic'
+						variant='black'
 					/>
 					{renderBars(171.92)}
 					{renderBars(12.74)}
@@ -88,21 +100,8 @@ const Camera = ({ position, nodes }: ObjectI & ContactsGLTFResult) => {
 						material={bookComBodyBack.material}
 						meshPosition={[-2, 94.13, -33.17]}
 						meshScale={[0.99, 0.99, 0.04]}
-					/>
-					<pointLight
-						name='bookComLightGreen'
-						castShadow
-						intensity={1.28}
-						decay={4}
-						distance={158}
-						shadow-mapSize-width={1024}
-						shadow-mapSize-height={1024}
-						shadow-camera-near={100}
-						shadow-camera-far={100000}
-						color='#93fe00'
-						position={[1.1, 103.91, 2.35]}
-						rotation={[0, -0.96, 0]}
-						scale={[2.5, 5.16, 3.75]}
+						materialType='glossy'
+						variant='greenEw'
 					/>
 					<MeshComponent
 						name='bookComBodyFront'
@@ -110,6 +109,8 @@ const Camera = ({ position, nodes }: ObjectI & ContactsGLTFResult) => {
 						material={bookComBodyFront.material}
 						meshPosition={[-2, 94.13, 35.59]}
 						meshScale={[0.99, 0.99, 0.04]}
+						materialType='metallic'
+						variant='brown'
 					/>
 				</group>
 			</group>

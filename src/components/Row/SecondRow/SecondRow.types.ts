@@ -1,5 +1,6 @@
 import { GLTF } from 'three-stdlib';
 import { MoustacheNodes } from '../../Doll/Doll.types';
+import { JackOLanternGLTFNodes } from '../../JackOLantern/JackOLantern.types';
 
 export type SecondRowGLTFResult = GLTF & {
   nodes: Record<string, THREE.Mesh>;
@@ -68,7 +69,7 @@ export type ClockGLTFNodes = {
   clockJailBase: THREE.Mesh;
   clockDollBody:THREE.Mesh;
   floor: THREE.Mesh;
-} & MoustacheNodes;
+} & MoustacheNodes & JackOLanternGLTFNodes;
 
 export type ClockGLTFResult = {
   nodes: ClockGLTFNodes;

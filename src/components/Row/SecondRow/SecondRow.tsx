@@ -10,7 +10,7 @@ import Clock from './components/Clock/Clock';
 const SecondRow = () => {
 	const { nodes } = useGLTF('./iphoneNightmares.gltf') as SecondRowGLTFResult;
 	return (
-		<group position={arrayToVector3([10, 25, 20])}>
+		<group position={arrayToVector3([10, 25, 25])}>
 			<Clock nodes={nodes as ClockGLTFNodes} position={arrayToVector3([-90, 0, 0])}/>
 			<Contacts nodes={nodes as unknown as ContactsGLTFNodes} position={arrayToVector3([-30, 0, 0])}/>
 			<FindMay nodes={nodes as unknown as FindMyGLTFNodes} position={arrayToVector3([30, 0, 0])}/>

@@ -22,20 +22,15 @@ const Peach = ({
 	materials,
 }: PeachProps) => {
 	const { peach, leaf, leafBase } = geometries;
-    
-	const { peach: peachMaterial, leaf: leafMaterial , leafBase: leafBaseMaterial } = materials;
-	
-	// position={[2.09, 0.21, 7.28]}
-	// 	rotation={[Math.PI / 2, 0, 0]}
-	// 	scale={0.08}
+
+	const {
+		peach: peachMaterial,
+		leaf: leafMaterial,
+		leafBase: leafBaseMaterial,
+	} = materials;
 
 	return (
-		<group
-			name='peach'
-			position={position}
-			rotation={rotation}
-			scale={scale}
-		>
+		<group name='peach' position={position} rotation={rotation} scale={scale}>
 			<MeshComponent
 				name='peachEl'
 				geometry={peach}
@@ -58,6 +53,8 @@ const Peach = ({
 				meshPosition={[21.28, 91.72, 0.24]}
 				meshRotation={[0, 0, 0.7]}
 				meshScale={[1.42, 1.42, 0.73]}
+				materialType='plastic'
+				variant='redBloody'
 			/>
 		</group>
 	);

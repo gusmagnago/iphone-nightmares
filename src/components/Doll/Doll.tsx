@@ -81,59 +81,73 @@ const Doll = ({
 						<MeshComponent
 							key={`dollEye-${index}`}
 							name='dollEye'
-							geometry={nodes.grindrDollEye.geometry}
-							material={nodes.grindrDollEye.material}
+							geometry={nodes?.grindrDollEye.geometry}
+							material={nodes?.grindrDollEye.material}
 							meshPosition={position}
+							materialType='glossy'
+							variant='black'
 						/>
 					))}
 				</group>
 				<MeshComponent
 					name='dollMouth'
-					geometry={nodes.grindrDollMouth.geometry}
+					geometry={nodes?.grindrDollMouth.geometry}
 					material={
-						hasCostume ? dollMakeUp.lipstick : nodes.grindrDollMouth.material
+						hasCostume ? dollMakeUp.lipstick : nodes?.grindrDollMouth.material
 					}
 					meshPosition={[0, 0, -0.4]}
 					meshScale={[1, 0.3, 1]}
+					materialType='plastic'
+					variant={hasCostume ? 'redBloody' : 'black'}
 				/>
 				<MeshComponent
 					name='dollBg'
-					geometry={nodes.grindrDollBg.geometry}
-					material={nodes.grindrDollBg.material}
+					geometry={nodes?.grindrDollBg.geometry}
+					material={nodes?.grindrDollBg.material}
 					meshPosition={[0, 2.05, -1.13]}
 					meshScale={[1, 1, 1.46]}
+					materialType='plastic'
+					variant='brownLight'
 				/>
 			</group>
 			<group name='dollBodyComp' position={[-39.8, 6.62, -0.09]}>
 				<MeshComponent
 					name='dollBody'
-					geometry={nodes.grindrDollBody.geometry}
+					geometry={nodes?.grindrDollBody.geometry}
 					material={
-						hasCostume ? dollClothingMaterial : nodes.grindrDollBody.material
+						hasCostume ? dollClothingMaterial : nodes?.grindrDollBody.material
 					}
 					meshPosition={[0, 0, -1.97]}
+					materialType='metallic'
+					variant={hasCostume ? 'black' : 'brown'}
 				>
 					<MeshComponent
 						name='dollChest'
-						geometry={nodes.grindrDollChest.geometry}
+						geometry={nodes?.grindrDollChest.geometry}
 						material={
-							hasCostume ? dollClothingMaterial : nodes.grindrDollChest.material
+							hasCostume
+								? dollClothingMaterial
+								: nodes?.grindrDollChest.material
 						}
 						meshPosition={[0, -3.36, 12.01]}
 						meshScale={[1, 0.92, 1.46]}
+						materialType={hasCostume ? 'glossy' : 'metallic'}
+						variant={hasCostume ? 'blackLight' : 'brownLight'}
 					>
 						<group name='dollChestGroup' position={[-0.05, 5.5, 0.42]}>
 							<MeshComponent
 								name='dollBelly'
-								geometry={nodes.grindrDollBelly.geometry}
+								geometry={nodes?.grindrDollBelly.geometry}
 								material={
 									hasCostume
 										? dollClothingMaterial
-										: nodes.grindrDollBelly.material
+										: nodes?.grindrDollBelly.material
 								}
 								meshPosition={[0, -8, -0.5]}
 								meshRotation={[-0.34, 0.01, -0.02]}
 								meshScale={[0.95, 0.96, 0.27]}
+								materialType={hasCostume ? 'glossy' : 'metallic'}
+								variant={hasCostume ? 'blackLight' : 'brownLight'}
 							/>
 							{chestValues.map(
 								({ position, rotate, titPosition, titRotation }, index) => (
@@ -144,22 +158,26 @@ const Doll = ({
 										key={`dollChest-${index}`}
 									>
 										<MeshComponent
-											geometry={nodes.grindrDollTit.geometry}
+											geometry={nodes?.grindrDollTit.geometry}
 											material={
 												hasCostume
 													? dollClothingMaterial
-													: nodes.grindrDollTit.material
+													: nodes?.grindrDollTit.material
 											}
 											meshPosition={titPosition}
 											meshRotation={titRotation}
 											meshScale={[0.91, 0.8, 0.96]}
+											materialType={hasCostume ? 'glossy' : 'metallic'}
+											variant={hasCostume ? 'blackLight' : 'brown'}
 										/>
 										<MeshComponent
-											geometry={nodes.dollChestTit.geometry}
-											material={nodes.dollChestTit.material}
+											geometry={nodes?.dollChestTit.geometry}
+											material={nodes?.dollChestTit.material}
 											meshPosition={[0, 0, 0]}
 											meshRotation={[-0.23, 0.01, -0.02]}
 											meshScale={[1, 0.99, 0.36]}
+											materialType={hasCostume ? 'glossy' : 'metallic'}
+											variant={hasCostume ? 'blackLight' : 'brownLight'}
 										/>
 									</group>
 								)
@@ -179,19 +197,23 @@ const Doll = ({
 						>
 							<MeshComponent
 								name='dollLegItem'
-								geometry={nodes.grindrDollLegItem.geometry}
-								material={nodes.grindrDollLegItem.material}
+								geometry={nodes?.grindrDollLegItem.geometry}
+								material={nodes?.grindrDollLegItem.material}
 								meshPosition={[-3.5, -0.63, 0]}
 								meshRotation={[Math.PI, 0, 0]}
 								meshScale={[1, 1.14, 1]}
+								materialType='metallic'
+								variant={hasCostume ? 'black' : 'brownLight'}
 							/>
 							<MeshComponent
 								name='dollLegItem1'
-								geometry={nodes.grindrDollLegItem.geometry}
-								material={nodes.grindrDollLegItem.material}
+								geometry={nodes?.grindrDollLegItem.geometry}
+								material={nodes?.grindrDollLegItem.material}
 								meshPosition={[3.5, -0.63, 0]}
 								meshRotation={[Math.PI, 0, 0]}
 								meshScale={[1, 1.14, 1]}
+								materialType='metallic'
+								variant={hasCostume ? 'black' : 'brownLight'}
 							/>
 						</group>
 					))}
@@ -206,11 +228,13 @@ const Doll = ({
 					>
 						<MeshComponent
 							name='dollShoeLeg'
-							geometry={nodes.grindrDollShoeLeg.geometry}
-							material={nodes.grindrDollShoeLeg.material}
+							geometry={nodes?.grindrDollShoeLeg.geometry}
+							material={nodes?.grindrDollShoeLeg.material}
 							meshPosition={[1.92, 30.08, -28.29]}
 							meshRotation={[-Math.PI, -0.2, -Math.PI / 2]}
 							meshScale={1}
+							materialType='metallic'
+							variant='black'
 						/>
 						{dollShoeFingers.map(({ position, rotation }, index) => (
 							<group
@@ -222,18 +246,22 @@ const Doll = ({
 							>
 								<MeshComponent
 									name='dollShoeBack'
-									geometry={nodes.grindrDollShoeBack.geometry}
-									material={nodes.grindrDollShoeBack.material}
+									geometry={nodes?.grindrDollShoeBack.geometry}
+									material={nodes?.grindrDollShoeBack.material}
 									meshPosition={[0, -9.85, 0]}
 									meshRotation={[-Math.PI / 2, 0, -2.01]}
+									materialType='metallic'
+									variant='black'
 								/>
 								<MeshComponent
 									name='dollShoeFront'
-									geometry={nodes.grindrDollShoeFront.geometry}
-									material={nodes.grindrDollShoeFront.material}
+									geometry={nodes?.grindrDollShoeFront.geometry}
+									material={nodes?.grindrDollShoeFront.material}
 									meshPosition={[-28.22, 26.6, 61.9]}
 									meshRotation={[2.73, -1.22, 2.24]}
 									meshScale={1}
+									materialType='glossy'
+									variant='grayLight'
 								/>
 							</group>
 						))}

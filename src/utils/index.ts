@@ -9,7 +9,10 @@ export const arrayToVector3 = (positionVal: number[] | undefined) => {
 	}
 };
 
-export const arrayToEuler = (eulerArray: number[] | undefined) => {
+export const arrayToEuler = (eulerArray: number[] | THREE.Euler | undefined) => {
+	if (typeof eulerArray === 'object' && eulerArray instanceof THREE.Euler) {
+		return new THREE.Euler().copy(eulerArray);
+	}
 	if (eulerArray?.length === 3) {
 		const [x, y, z] = eulerArray;
 		return new THREE.Euler(x, y, z);
@@ -17,3 +20,4 @@ export const arrayToEuler = (eulerArray: number[] | undefined) => {
 		return new THREE.Euler(0, 0, 0);
 	}
 };
+

@@ -5,15 +5,18 @@ type FloorProps = {
   position: number[];
   geometry: THREE.BufferGeometry;
   material: MaterialI;
+  isHeart?: boolean;
 };
 
-const Floor = ({ position, geometry, material }: FloorProps) => {
+const Floor = ({ position, geometry, material, isHeart }: FloorProps) => {
 	return (
 		<MeshComponent
 			name='floor'
 			geometry={geometry}
 			material={material}
 			meshPosition={position}
+			materialType='glossy'
+			variant={isHeart ? 'white' : 'black'}
 		/>
 	);
 };

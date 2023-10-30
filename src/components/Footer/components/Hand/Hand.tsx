@@ -19,10 +19,6 @@ const Hand = ({
 	const { handIcon } = geometries;
 	const { handIcon: handIconMaterial } = materials;
 
-	// position={[2.31, -6.82, -0.66]}
-	// 		rotation={[1.98, 1.1, Math.PI / 2]}
-	// 		scale={0.02}
-
 	return (
 		<group position={position} rotation={rotation} scale={scale}>
 			<MeshComponent
@@ -30,6 +26,8 @@ const Hand = ({
 				geometry={handIcon}
 				material={handIconMaterial}
 				meshPosition={[356.86, 422.32, 0]}
+				materialType={'plastic'}
+				variant={'black'}
 			/>
 		</group>
 	);

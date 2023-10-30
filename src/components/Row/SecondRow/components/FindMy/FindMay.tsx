@@ -18,17 +18,21 @@ const FindMay = ({ position, nodes }: ObjectI & FindMyGLTFResult) => {
 		<group name='findMyGroup' position={position}>
 			<MeshComponent
 				name='findMyTitle'
-				geometry={nodes.findMyTitle.geometry}
-				material={nodes.findMyTitle.material}
+				geometry={nodes?.findMyTitle.geometry}
+				material={nodes?.findMyTitle.material}
 				meshPosition={[5, -30, 0]}
+				materialType='plastic'
+				variant='white'
 			/>
 			<group name='LighthouseComp' position={[0, 0, 0]}>
 				<group name='LighthouseBody' position={[0, 0, 33]}>
 					<MeshComponent
 						name='LighthouseBodyTop'
-						geometry={nodes.LighthouseBodyTop.geometry}
-						material={nodes.LighthouseBodyTop.material}
+						geometry={nodes?.LighthouseBodyTop.geometry}
+						material={nodes?.LighthouseBodyTop.material}
 						meshPosition={[0, 0, 47]}
+						materialType='metallic'
+						variant='black'
 					/>
 					<group name='LighthouseLigth' position={[-1.61, -5.73, 40.63]}>
 						<pointLight
@@ -41,63 +45,74 @@ const FindMay = ({ position, nodes }: ObjectI & FindMyGLTFResult) => {
 							shadow-mapSize-height={1024}
 							shadow-camera-near={100}
 							shadow-camera-far={100000}
-							color='#fd8181'
+							color='#ff0000'
 							position={[0.7, 5.14, -4.78]}
 							scale={0.47}
 						/>
 					</group>
 					<MeshComponent
 						name='LighthouseStar'
-						geometry={nodes.LighthouseStar.geometry}
-						material={nodes.LighthouseStar.material}
+						geometry={nodes?.LighthouseStar.geometry}
+						material={nodes?.LighthouseStar.material}
 						meshPosition={[0, 0, 28.32]}
+						materialType='metallic'
+						variant='black'
 					/>
 					<MeshComponent
 						name='LighthouseStar'
-						geometry={nodes.LighthouseStar.geometry}
-						material={nodes.LighthouseStar.material}
+						geometry={nodes?.LighthouseStar.geometry}
+						material={nodes?.LighthouseStar.material}
 						meshPosition={[0, 0, 46.3]}
+						materialType='metallic'
+						variant='black'
 					/>
 					<group name='LighthouseLegs' position={[0.16, 0.98, 37.6]}>
 						{findMyLegs.map(({ position }, index) => (
 							<MeshComponent
-								geometry={nodes.LighthouseLeg.geometry}
-								material={nodes.LighthouseLeg.material}
+								geometry={nodes?.LighthouseLeg.geometry}
+								material={nodes?.LighthouseLeg.material}
 								meshPosition={position}
 								meshRotation={[Math.PI / 2, 0, 0]}
 								key={`lighthouseLeg-${index}-val`}
+								materialType='metallic'
+								variant='black'
 							/>
 						))}
 					</group>
 					<MeshComponent
 						name='LighthouseGlass'
-						geometry={nodes.LighthouseGlass.geometry}
-						material={nodes.LighthouseGlass.material}
+						geometry={nodes?.LighthouseGlass.geometry}
+						material={nodes?.LighthouseGlass.material}
 						meshPosition={[0, 0, 27.33]}
+						materialType='glass'
+						variant='redBloody'
+						glassThickness={2}
 					/>
 					<LightHouse
 						position={arrayToVector3([0, 0, 5])}
 						whiteGeometry={{
-							geometry: nodes.LighthouseBodyPartWhite.geometry,
-							material: nodes.LighthouseBodyPartWhite.material,
+							geometry: nodes?.LighthouseBodyPartWhite.geometry,
+							material: nodes?.LighthouseBodyPartWhite.material,
 						}}
 						redGeometry={{
-							geometry: nodes.LighthouseBodyPartRed.geometry,
-							material: nodes.LighthouseBodyPartRed.material,
+							geometry: nodes?.LighthouseBodyPartRed.geometry,
+							material: nodes?.LighthouseBodyPartRed.material,
 						}}
 					/>
 				</group>
 				<MeshComponent
 					name='LighthouseBase'
-					geometry={nodes.LighthouseBase.geometry}
-					material={nodes.LighthouseBase.material}
+					geometry={nodes?.LighthouseBase.geometry}
+					material={nodes?.LighthouseBase.material}
 					meshPosition={[0, 0, 0]}
+					materialType='metallic'
+					variant='black'
 				/>
 			</group>
 			<Floor
 				position={[0, 0, 0]}
-				geometry={nodes.floor.geometry}
-				material={nodes.floor.material}
+				geometry={nodes?.floor.geometry}
+				material={nodes?.floor.material}
 			/>
 		</group>
 	);

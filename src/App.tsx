@@ -7,6 +7,7 @@ import {  OrbitControls, OrthographicCamera } from '@react-three/drei';
 
 import Scene from './components/Scene/Scene';
 import Glow from './effects/Glow/Glow';
+import { palette } from './materials';
 
 export const App = () => {
 	return (
@@ -14,8 +15,7 @@ export const App = () => {
 			<Suspense fallback={null}>
 				<Canvas
 					camera={{
-						// far: 10000,
-						// near: 0,
+						far: 10000,
 						position: new THREE.Vector3(0, -10, 500),
 					}}
 					dpr={window.devicePixelRatio}
@@ -23,8 +23,10 @@ export const App = () => {
 					flat
 					linear
 				>
-					<color attach='background' args={['#e5e5e5']} />
-					<hemisphereLight intensity={3} color='#eaeaea' />
+					<color attach='background' args={['#eaeaea']} />
+					<hemisphereLight intensity={2} color={palette.glass} />
+					<directionalLight color={palette.light} intensity={1.5} position={[1, 1, 1]}/>
+					{/* <ambientLight color={'#f40606'} intensity={0.5}/> */}
 					<Scene />
 					{/* <OrthographicCamera makeDefault={true} far={10000} near={-50000} /> */}
 					<OrbitControls />
