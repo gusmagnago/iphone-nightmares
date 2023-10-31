@@ -1,6 +1,7 @@
-import Peach from './components/Peach/Peach';
 import { arrayToEuler, arrayToVector3 } from '../../utils';
+
 import MeshComponent from '../MeshComponent/MeshComponent';
+import Peach from './components/Peach/Peach';
 import Hand from './components/Hand/Hand';
 import Banana from './components/Banana/Banana';
 import GlassBox from '../GlassBox/GlassBox';
@@ -30,23 +31,23 @@ const Footer = ({ nodes }: FooterGLTFResult) => {
 					rotation={arrayToEuler([Math.PI / 2, 0, 0])}
 					scale={0.08}
 					geometries={{
-						peach: nodes?.peach.geometry,
+						peach1: nodes?.peach1.geometry,
 						leaf: nodes?.leaf.geometry,
 						leafBase: nodes?.leafBase.geometry,
 					}}
 					materials={{
-						peach: nodes?.peach.material,
+						peach1: nodes?.peach1.material,
 						leaf: nodes?.leaf.material,
 						leafBase: nodes?.leafBase.material,
 					}}
 				/>
 			),
-			position: [-50, 0, 0],
+			position: [-50, 0, 33],
 		},
 		{
 			children: (
 				<Hand
-					position={arrayToVector3([2.31, 0, -0.66])}
+					position={arrayToVector3([4, 5, 0])}
 					rotation={arrayToEuler([1.98, 1.1, Math.PI / 2])}
 					scale={0.02}
 					geometries={{
@@ -57,7 +58,7 @@ const Footer = ({ nodes }: FooterGLTFResult) => {
 					}}
 				/>
 			),
-			position: [10, 0, 0],
+			position: [10, 0,33],
 			basePosition: [-10.22, 3, 0],
 		},
 		{
@@ -76,7 +77,7 @@ const Footer = ({ nodes }: FooterGLTFResult) => {
 					}}
 				/>
 			),
-			position: [70, 0, 0],
+			position: [70, 0, 33],
 		},
 	];
 
@@ -95,7 +96,6 @@ const Footer = ({ nodes }: FooterGLTFResult) => {
 				<GlassBox
 					key={`glassBox-${index}`}
 					position={glassBox.position}
-					basePosition={[-10.22, 3, 0]}
 					{...glassBoxGeometry}
 				>
 					{glassBox.children}

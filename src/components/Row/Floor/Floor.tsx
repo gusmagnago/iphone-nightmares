@@ -2,19 +2,18 @@ import * as THREE from 'three';
 import MeshComponent from '../../MeshComponent/MeshComponent';
 
 type FloorProps = {
-  position: number[];
   geometry: THREE.BufferGeometry;
   material: MaterialI;
   isHeart?: boolean;
 };
 
-const Floor = ({ position, geometry, material, isHeart }: FloorProps) => {
+const Floor = ({ geometry, material, isHeart }: FloorProps) => {
 	return (
 		<MeshComponent
 			name='floor'
 			geometry={geometry}
 			material={material}
-			meshPosition={position}
+			meshPosition={[0, 0, 0]}
 			materialType='glossy'
 			variant={isHeart ? 'white' : 'black'}
 		/>

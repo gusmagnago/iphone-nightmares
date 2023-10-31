@@ -14,9 +14,17 @@ import { IphoneGLTFNodes } from '../Iphone/Iphone.types';
 import { FooterGLTFNodes } from '../Footer/Footer.types';
 import { BGGLTFNodes } from '../Background/BackgroundImage.types';
 import { WidgetGLTFNodes } from '../Widgets/Widgets.types';
+import { FirstRowGLTFNodes } from '../Row/FirstRow/FirstRow.types';
+import { SecondRowGLTFNodes } from '../Row/SecondRow/SecondRow.types';
 
 type GLTFResult = GLTF & {
-  nodes: InfoGLTFNodes | IphoneGLTFNodes | FooterGLTFNodes;
+  nodes:
+    | InfoGLTFNodes
+    | IphoneGLTFNodes
+    | FooterGLTFNodes
+    | WidgetGLTFNodes
+    | FirstRowGLTFNodes
+    | SecondRowGLTFNodes;
 };
 
 const Scene = ({ ...props }) => {
@@ -24,19 +32,21 @@ const Scene = ({ ...props }) => {
 
 	return (
 		<>
-			<group {...props} position={[0,0,0]}>
+			<group {...props} position={[0, 0, 0]}>
 				<scene>
 					<Info nodes={nodes as InfoGLTFNodes} />
 					<Iphone nodes={nodes as IphoneGLTFNodes} />
-					<Widgets nodes={nodes as unknown as WidgetGLTFNodes} />
+					<Widgets nodes={nodes as WidgetGLTFNodes} />
 					<BackgroundImage nodes={nodes as BGGLTFNodes} />
-					<FirstRow />
-					<SecondRow />
+					<FirstRow nodes={nodes as FirstRowGLTFNodes} />
+					<SecondRow nodes={nodes as SecondRowGLTFNodes} />
 					<Footer nodes={nodes as FooterGLTFNodes} />
 				</scene>
 			</group>
 		</>
 	);
 };
+
+useGLTF.preload('./iphoneNightmares.gltf');
 
 export default Scene;

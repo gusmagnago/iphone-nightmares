@@ -1,26 +1,22 @@
 import MeshComponent from '../../../../MeshComponent/MeshComponent';
 import { HealthGLTFResult } from '../../FirstRow.types';
 import Floor from '../../../Floor/Floor';
-import { useRef, useState } from 'react';
-import { ThreeEvent, useThree } from '@react-three/fiber';
-import { arrayToEuler, arrayToVector3 } from '../../../../../utils';
+// import { useRef, useState } from 'react';
+// import { ThreeEvent, useThree } from '@react-three/fiber';
 
 const Health = ({ position, nodes }: ObjectI & HealthGLTFResult) => {
-	const healthGroupRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(
-		null
-	);
-	const { camera } = useThree();
-	const [initScale, setInitScale] = useState<THREE.Vector3 | number>(1);
-	const [initMaterialPosition, setInitMaterialPosition] = useState(position);
-	const [initMaterialRotation, setInitMaterialRotation] = useState<number[]>([
-		0, 0, 0,
-	]);
-	const [initTitlePosition, setInitTitlePosition] = useState<number[]>([
-		5.25, -30, 0,
-	]);
-	const [initTitleRotation, setInitTitleRotation] = useState<number[]>([
-		0, 0, 0,
-	]);
+	// const healthGroupRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(
+	// 	null
+	// );
+	// const { camera } = useThree();
+	// const [initScale, setInitScale] = useState<THREE.Vector3 | number>(0.22);
+	// const [initMaterialPosition, setInitMaterialPosition] = useState();
+	// const [initMaterialRotation, setInitMaterialRotation] = useState<number[]>([
+	// 	0, 0, 0,
+	// ]);
+	// const [initTitleRotation, setInitTitleRotation] = useState<number[]>([
+	// 	0, 0, 0,
+	// ]);
 
 	const healthBloods = [
 		{ position: [-2.66, -7.41, 0] },
@@ -28,39 +24,33 @@ const Health = ({ position, nodes }: ObjectI & HealthGLTFResult) => {
 		{ position: [-6.73, 5.59, 0] },
 	];
 
-	const handleClick = (event: ThreeEvent<MouseEvent>) => {
-		const rotationSpeed = 0.2;
-		event.stopPropagation();
+	// const handleClick = (event: ThreeEvent<MouseEvent>) => {
+	// 	const rotationSpeed = 0.2;
+	// 	event.stopPropagation();
 
-		camera.lookAt(0, 0, 0);
+	// 	camera.lookAt(0, 0, 0);
 
-		if (healthGroupRef?.current) {
-			healthGroupRef.current.rotation.x -= rotationSpeed;
-			setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
-			setInitMaterialPosition(arrayToVector3([0, -150, 50]));
-			setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
-			setInitMaterialPosition(arrayToVector3([0, -150, 50]));
-			setInitTitleRotation([-90, Math.PI / 1, 0]);
-			setInitTitlePosition([5, -60, 0]);
-			setInitScale(2);
-		}
-	};
+	// 	if (healthGroupRef?.current) {
+	// 		healthGroupRef.current.rotation.x -= rotationSpeed;
+	// 		setInitMaterialPosition([100, , 200]);
+	// 		setInitMaterialRotation([Math.PI / 10, 0, 0]);
+	// 		setInitTitleRotation([-90, Math.PI / 1, 0]);
+	// 		setInitScale(1);
+	// 	}
+	// };
 
 	return (
 		<group
 			name='health'
-			ref={healthGroupRef}
-			position={initMaterialPosition}
-			onClick={handleClick}
-			rotation={arrayToEuler(initMaterialRotation)}
-			scale={initScale}
+			// ref={healthGroupRef}
+			position={position}
+			// onClick={handleClick}
 		>
 			<MeshComponent
 				name='healthTitle'
 				geometry={nodes?.healthTitle.geometry}
 				material={nodes?.healthTitle.material}
-				meshPosition={initTitlePosition}
-				rotation={arrayToEuler(initTitleRotation)}
+				meshPosition={[5.25, -30, 0]}
 				materialType='plastic'
 				variant='white'
 			/>
@@ -105,7 +95,7 @@ const Health = ({ position, nodes }: ObjectI & HealthGLTFResult) => {
 						material={nodes?.healthKnifeHolder.material}
 						meshPosition={[2.85, 64.68, -5.36]}
 						materialType='plastic'
-						variant='black'
+						variant='gray'
 					/>
 				</group>
 				<MeshComponent
@@ -118,7 +108,6 @@ const Health = ({ position, nodes }: ObjectI & HealthGLTFResult) => {
 				/>
 			</group>
 			<Floor
-				position={[0, 0, 0]}
 				geometry={nodes?.healthBG.geometry}
 				material={nodes?.healthBG.material}
 				isHeart

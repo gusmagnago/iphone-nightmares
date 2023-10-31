@@ -1,28 +1,31 @@
-import {  useRef, useState } from 'react';
-import Doll from '../../../../Doll/Doll';
 import MeshComponent from '../../../../MeshComponent/MeshComponent';
+import Doll from '../../../../Doll/Doll';
 import Floor from '../../../Floor/Floor';
+
 import { GrindrGLTFResult } from '../../FirstRow.types';
-import { ThreeEvent, useThree } from '@react-three/fiber';
-import { arrayToEuler, arrayToVector3 } from '../../../../../utils';
 
 const Grindr = ({ position, nodes }: ObjectI & GrindrGLTFResult) => {
-	const grindrGroupRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(
-		null
-	);
+	// const grindrGroupRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(
+	// 	null
+	// );
 
-	const { camera } = useThree();
-	const [initScale, setInitScale] = useState<THREE.Vector3 | number>(1);
-	const [initMaterialPosition, setInitMaterialPosition] = useState(position);
-	const [initMaterialRotation, setInitMaterialRotation] = useState<number[]>([
-		0, 0, 0,
-	]);
-	const [initTitlePosition, setInitTitlePosition] = useState<number[]>([
-		5, -30, 0,
-	]);
-	const [initTitleRotation, setInitTitleRotation] = useState<number[]>([
-		0, 0, 0,
-	]);
+	// const { camera } = useThree();
+
+	// const [initScale, setInitScale] = useState<THREE.Vector3 | number>(1);
+	// const [iniTitleScale, setInitTitleScale] = useState<THREE.Vector3 | number>(
+	// 	1
+	// );
+	// const [initMaterialPosition, setInitMaterialPosition] = useState<number[]>([
+	// 	0.11, 2.98, 37,
+	// ]);
+	// const [initMaterialRotation, setInitMaterialRotation] = useState<number[]>([
+	// 	Math.PI / 2,
+	// 	0,
+	// 	0,
+	// ]);
+	// const [initTitlePosition, setInitTitlePosition] = useState<number[]>([
+	// 	5, -30, 0,
+	// ]);
 
 	const grindrMaskIrons = [
 		{ position: [-0.31, 4.8, -3.05] },
@@ -41,39 +44,34 @@ const Grindr = ({ position, nodes }: ObjectI & GrindrGLTFResult) => {
 		{ position: [5, 0, 0], rotation: [-Math.PI, 0, 2.84] },
 	];
 
-	const handleClick = (event: ThreeEvent<MouseEvent>) => {
-		const rotationSpeed = 0.2;
-		event.stopPropagation();
+	// const handleClick = (event: ThreeEvent<MouseEvent>) => {
+	// 	const rotationSpeed = 0.2;
+	// 	event.stopPropagation();
 
-		camera.lookAt(0, 0, 0);
+	// 	camera.lookAt(0, 0, 0);
 
-		if (grindrGroupRef?.current) {
-			grindrGroupRef.current.rotation.x -= rotationSpeed;
-			setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
-			setInitMaterialPosition(arrayToVector3([0, -150, 50]));
-			setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
-			setInitMaterialPosition(arrayToVector3([0, -150, 50]));
-			setInitTitleRotation([-90, Math.PI / 1, 0]);
-			setInitTitlePosition([5, -60, 0]);
-			setInitScale(2);
-		}
-	};
+	// 	if (grindrGroupRef?.current) {
+	// 		grindrGroupRef.current.rotation.x -= rotationSpeed;
+	// 		setInitMaterialPosition([-100, -50, 200]);
+	// 		setInitMaterialRotation([Math.PI / 12, 0, 0]);
+	// 		setInitTitlePosition([-100, -150, 200]);
+	// 		setInitScale(2.5);
+	// 		setInitTitleScale(10);
+	// 	}
+	// };
 
 	return (
 		<group
 			name='grindrGroup'
-			position={initMaterialPosition}
-			onClick={handleClick}
-			ref={grindrGroupRef}
-			rotation={arrayToEuler(initMaterialRotation)}
-			scale={initScale}
+			position={position}
+			// ref={grindrGroupRef}
+			// onClick={handleClick}
 		>
 			<MeshComponent
 				name='grindrTitle'
 				geometry={nodes?.grindrTitle.geometry}
 				material={nodes?.grindrTitle.material}
-				meshPosition={initTitlePosition}
-				rotation={arrayToEuler(initTitleRotation)}
+				meshPosition={[5, -30, 0]}
 				materialType='plastic'
 				variant='white'
 			/>
@@ -81,6 +79,7 @@ const Grindr = ({ position, nodes }: ObjectI & GrindrGLTFResult) => {
 				name='grindrChar'
 				position={[0.11, 2.98, 37]}
 				rotation={[Math.PI / 2, 0, 0]}
+				scale={1}
 			>
 				<group
 					name='grindrMask'
@@ -137,7 +136,6 @@ const Grindr = ({ position, nodes }: ObjectI & GrindrGLTFResult) => {
 				<Doll nodes={nodes} position={[30.5, -18.57, 3.36]} />
 			</group>
 			<Floor
-				position={[0, 0, 0]}
 				geometry={nodes?.floor.geometry}
 				material={nodes?.floor.material}
 			/>

@@ -5,6 +5,21 @@ import { FindMyGLTFResult } from '../../SecondRow.types';
 import LightHouse from './LightHouse/LightHouse';
 
 const FindMay = ({ position, nodes }: ObjectI & FindMyGLTFResult) => {
+	// const clockGroupRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(
+	// 	null
+	// );
+	// const { camera } = useThree();
+	// const [initScale, setInitScale] = useState<THREE.Vector3 | number>(1);
+	// const [initMaterialPosition, setInitMaterialPosition] = useState(position);
+	// const [initMaterialRotation, setInitMaterialRotation] = useState<number[]>([
+	// 	0, 0, 0,
+	// ]);
+	// const [initTitlePosition, setInitTitlePosition] = useState<number[]>([
+	// 	5, -30, 0,
+	// ]);
+	// const [initTitleRotation, setInitTitleRotation] = useState<number[]>([
+	// 	0, 0, 0,
+	// ]);
 
 	const findMyLegs = [
 		{ position: [-0.14, 7.49, 0] },
@@ -14,8 +29,29 @@ const FindMay = ({ position, nodes }: ObjectI & FindMyGLTFResult) => {
 		{ position: [-4.97, -7.49, 0] },
 	];
 
+	// const handleClick = (event: ThreeEvent<MouseEvent>) => {
+	// 	const rotationSpeed = 0.2;
+	// 	event.stopPropagation();
+
+	// 	camera.lookAt(0, 0, 0);
+
+	// 	if (clockGroupRef?.current) {
+	// 		clockGroupRef.current.rotation.x -= rotationSpeed;
+	// 		setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
+	// 		setInitMaterialPosition(arrayToVector3([0, -150, 50]));
+	// 		setInitTitleRotation([-90, Math.PI / 1, 0]);
+	// 		setInitTitlePosition([5, -60, 0]);
+	// 		setInitScale(2);
+	// 	}
+	// };
+
 	return (
-		<group name='findMyGroup' position={position}>
+		<group
+			name='findMyGroup'
+			position={position}
+			// ref={clockGroupRef}
+			// onClick={handleClick}
+		>
 			<MeshComponent
 				name='findMyTitle'
 				geometry={nodes?.findMyTitle.geometry}
@@ -110,7 +146,6 @@ const FindMay = ({ position, nodes }: ObjectI & FindMyGLTFResult) => {
 				/>
 			</group>
 			<Floor
-				position={[0, 0, 0]}
 				geometry={nodes?.floor.geometry}
 				material={nodes?.floor.material}
 			/>

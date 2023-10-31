@@ -75,7 +75,6 @@ const BackgroundImage = ({ nodes }: BGGLTFResult) => {
 							nodes={nodes as BatGLTFNodes}
 						/>
 					))}
-          G
 				</group>
 			</group>
 		</group>

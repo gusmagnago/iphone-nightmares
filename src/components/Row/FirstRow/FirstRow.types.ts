@@ -1,8 +1,9 @@
-import { GLTF } from 'three-stdlib';
+export type FirstRowGLTFNodes =  GrindrGLTFNodes | XGLTFNodes | SoundCloudGLTFNodes | HealthGLTFNodes;
 
-export type FirstRowGLTFResult = GLTF & {
-  nodes: Record<string, THREE.Mesh>;
+export type FirstRowGLTFResult = {
+  nodes: FirstRowGLTFNodes;
 };
+
 
 export type GrindrGLTFNodes = {
   floor: THREE.Mesh;

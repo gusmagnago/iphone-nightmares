@@ -1,9 +1,10 @@
-import { GLTF } from 'three-stdlib';
 import { MoustacheNodes } from '../../Doll/Doll.types';
 import { JackOLanternGLTFNodes } from '../../JackOLantern/JackOLantern.types';
 
-export type SecondRowGLTFResult = GLTF & {
-  nodes: Record<string, THREE.Mesh>;
+export type SecondRowGLTFNodes = CameraGLTFNodes | FindMyGLTFNodes | ContactsGLTFNodes | ClockGLTFNodes;
+
+export type SecondRowGLTFResult = {
+  nodes: SecondRowGLTFNodes;
 };
 
 export type CameraGLTFNodes = {

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-
 import { arrayToEuler, arrayToVector3 } from '../../../../../utils';
+
 import Candle, { CandleNodes } from '../../../../Candle/Candle';
 import JackOLantern from '../../../../JackOLantern/JackOLantern';
 import MeshComponent from '../../../../MeshComponent/MeshComponent';
@@ -11,17 +11,32 @@ import { DollGLTFNodes, MoustacheProps } from '../../../../Doll/Doll.types';
 import { JackOLanternGLTFNodes } from '../../../../JackOLantern/JackOLantern.types';
 
 const Clock = ({ position, nodes }: ObjectI & ClockGLTFResult) => {
+	// const clockGroupRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(
+	// 	null
+	// );
+	// const { camera } = useThree();
+	// const [initScale, setInitScale] = useState<THREE.Vector3 | number>(1);
+	// const [initMaterialPosition, setInitMaterialPosition] = useState(position);
+	// const [initMaterialRotation, setInitMaterialRotation] = useState<number[]>([
+	// 	0, 0, 0,
+	// ]);
+	// const [initTitlePosition, setInitTitlePosition] = useState<number[]>([
+	// 	0, -30, 0,
+	// ]);
+	// const [initTitleRotation, setInitTitleRotation] = useState<number[]>([
+	// 	0, 0, 0,
+	// ]);
+
 	const renderBars = (xVal: number, yVal: number) => {
 		const instancesVal = 10;
-		// const instanceDistance = 5;
-		const radius = 16; // Adjust the radius as needed
-		const rotationStep = (2 * Math.PI) / instancesVal; // Divide 360 degrees into equal parts
+		const radius = 16;
+		const rotationStep = (2 * Math.PI) / instancesVal;
 
 		const instances = Array.from({ length: instancesVal }, (_, i) => {
 			const angle = rotationStep * i;
 			const newX = xVal + Math.cos(angle) * radius;
 			const newY = yVal + Math.sin(angle) * radius;
-			const rotation = [0, 0, angle]; // Rotate each instance based on the angle
+			const rotation = [0, 0, angle];
 
 			return (
 				<MeshComponent
@@ -81,8 +96,29 @@ const Clock = ({ position, nodes }: ObjectI & ClockGLTFResult) => {
 		},
 	];
 
+	// const handleClick = (event: ThreeEvent<MouseEvent>) => {
+	// 	const rotationSpeed = 0.2;
+	// 	event.stopPropagation();
+
+	// 	camera.lookAt(0, 0, 0);
+
+	// 	if (clockGroupRef?.current) {
+	// 		clockGroupRef.current.rotation.x -= rotationSpeed;
+	// 		setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
+	// 		setInitMaterialPosition(arrayToVector3([0, -150, 50]));
+	// 		setInitTitleRotation([-90, Math.PI / 1, 0]);
+	// 		setInitTitlePosition([5, -60, 0]);
+	// 		setInitScale(2);
+	// 	}
+	// };
+
 	return (
-		<group name='contactsGroup' position={position}>
+		<group
+			name='contactsGroup'
+			position={position}
+			// ref={clockGroupRef}
+			// onClick={handleClick}
+		>
 			<MeshComponent
 				name='clockTitle'
 				geometry={nodes?.clockTitle.geometry}
@@ -159,7 +195,6 @@ const Clock = ({ position, nodes }: ObjectI & ClockGLTFResult) => {
 						meshScale={1}
 						materialType='glass'
 						variant='glass'
-                        
 					/>
 					<MeshComponent
 						name='clockBase'
@@ -183,7 +218,6 @@ const Clock = ({ position, nodes }: ObjectI & ClockGLTFResult) => {
 				/>
 			</group>
 			<Floor
-				position={[0, 0, 0]}
 				geometry={nodes?.floor.geometry}
 				material={nodes?.floor.material}
 			/>

@@ -1,70 +1,51 @@
-import * as THREE from 'three';
-
 import MeshComponent from '../../../../MeshComponent/MeshComponent';
 import Floor from '../../../Floor/Floor';
 import { XGLTFResult } from '../../FirstRow.types';
-import { useRef, useState } from 'react';
-import { arrayToEuler, arrayToVector3 } from '../../../../../utils';
-
-import { ThreeEvent, useThree } from '@react-three/fiber';
 
 const X = ({ position, nodes }: ObjectI & XGLTFResult) => {
-	const xGroupRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(null);
-	const { camera } = useThree();
-	const [initScale, setInitScale] = useState<THREE.Vector3 | number>(1);
-	const [initMaterialPosition, setInitMaterialPosition] = useState(position);
-	const [initMaterialRotation, setInitMaterialRotation] = useState<number[]>([
-		0, 0, 0,
-	]);
-	const [initTitlePosition, setInitTitlePosition] = useState<number[]>([
-		0, -30, 0,
-	]);
-	const [initTitleRotation, setInitTitleRotation] = useState<number[]>([
-		0, 0, 0,
-	]);
+	// const xGroupRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(null);
+	// const { camera } = useThree();
+	// const [initScale, setInitScale] = useState<THREE.Vector3 | number>(1);
+	// const [initMaterialPosition, setInitMaterialPosition] = useState(position);
+	// const [initMaterialRotation, setInitMaterialRotation] = useState<number[]>([
+	// 	0, 0, 0,
+	// ]);
+	// const [initTitlePosition, setInitTitlePosition] = useState<number[]>([
+	// 	0, -30, 0,
+	// ]);
+	// const [initTitleRotation, setInitTitleRotation] = useState<number[]>([
+	// 	0, 0, 0,
+	// ]);
 
-	const handleClick = (event: ThreeEvent<MouseEvent>) => {
-		const rotationSpeed = 0.2;
-		event.stopPropagation();
+	// const handleClick = (event: ThreeEvent<MouseEvent>) => {
+	// 	const rotationSpeed = 0.2;
+	// 	event.stopPropagation();
 
-		camera.lookAt(0, 0, 0);
+	// 	camera.lookAt(0, 0, 0);
 
-		if (xGroupRef?.current) {
-			xGroupRef.current.rotation.x -= rotationSpeed;
-			setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
-			setInitMaterialPosition(arrayToVector3([0, -150, 50]));
-			setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
-			setInitMaterialPosition(arrayToVector3([0, -150, 50]));
-			setInitTitleRotation([-90, Math.PI / 1, 0]);
-			setInitTitlePosition([0, -60, 0]);
-			setInitScale(2);
-		}
-	};
-
-	// const onClickHandler = (event: ThreeEvent<MouseEvent>) => {
-	// 	handleClick(event, xGroupRef);
-	// 	setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
-	// 	setInitMaterialPosition(arrayToVector3([0, -150, 50]));
-	// 	setInitTitleRotation([-90, Math.PI / 1, 0]);
-	// 	setInitTitlePosition([0, -60, 0]);
+	// 	if (xGroupRef?.current) {
+	// 		xGroupRef.current.rotation.x -= rotationSpeed;
+	// 		setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
+	// 		setInitMaterialPosition(arrayToVector3([0, -150, 50]));
+	// 		setInitTitleRotation([-90, Math.PI / 1, 0]);
+	// 		setInitTitlePosition([0, -60, 0]);
+	// 		setInitScale(2);
+	// 	}
 	// };
 
 	return (
 		<group
 			name='xGroup'
-			position={initMaterialPosition}
-			onClick={handleClick}
-			ref={xGroupRef}
-			rotation={arrayToEuler(initMaterialRotation)}
-			scale={initScale}
+			position={position}
+			// ref={xGroupRef}
+			// onClick={handleClick}
 		>
 			<group name='xBottleGroup' position={[0, 0, 10]}>
 				<MeshComponent
 					name='xBottleTitle'
 					geometry={nodes?.xBottleTitle.geometry}
 					material={nodes?.xBottleTitle.material}
-					meshPosition={initTitlePosition}
-					rotation={arrayToEuler(initTitleRotation)}
+					meshPosition={[0, -30, 0]}
 					materialType='plastic'
 					variant='white'
 				/>
@@ -208,9 +189,7 @@ const X = ({ position, nodes }: ObjectI & XGLTFResult) => {
 					variant='white'
 				/>
 			</group>
-
 			<Floor
-				position={[0, 0, 0]}
 				geometry={nodes?.floor.geometry}
 				material={nodes?.floor.material}
 			/>

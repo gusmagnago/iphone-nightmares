@@ -26,8 +26,8 @@ const Hand = ({
 				geometry={handIcon}
 				material={handIconMaterial}
 				meshPosition={[356.86, 422.32, 0]}
-				materialType={'plastic'}
-				variant={'black'}
+				materialType='glossy'
+				variant='black'
 			/>
 		</group>
 	);

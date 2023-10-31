@@ -1,13 +1,10 @@
 import {
-	// MeshRefractionMaterial,
 	MeshTransmissionMaterial,
 } from '@react-three/drei';
-// import { useLoader } from '@react-three/fiber';
-// import { RGBELoader } from 'three-stdlib';
 import { palette } from '../../materials';
 import { arrayToEuler, arrayToVector3 } from '../../utils';
 import { MeshMaterialVariant, MeshCompProps } from './MeshComponent.types';
-import { MeshProps } from '@react-three/fiber';
+import { MeshProps, useThree } from '@react-three/fiber';
 
 const MeshComponent = ({
 	name,
@@ -20,8 +17,11 @@ const MeshComponent = ({
 	variant,
 	children,
 	glassThickness,
+	glassReflectivity,
 }: MeshCompProps & MeshProps) => {
-	// const texture = useLoader(RGBELoader, './studio.hdr');
+	const { viewport } = useThree();
+	const pixelRatio = window.devicePixelRatio || 1;
+	const resolution = Math.min(viewport.width, viewport.height) * pixelRatio;
 
 	const scale = Array.isArray(meshScale)
 		? arrayToVector3(meshScale)
@@ -48,17 +48,20 @@ const MeshComponent = ({
             
 		case 'glass':
 			return (
-				<MeshTransmissionMaterial
-					resolution={1024}
-					distortion={0.25}
-					color={getPaletteVariant(variant)}
-					thickness={glassThickness ? glassThickness : 20}
-					anisotropy={1}
-					distortionScale={0}
-					temporalDistortion={0}
-					reflectivity={0.5}
-					roughness={0}
-				/>
+				<>
+					<MeshTransmissionMaterial
+						resolution={resolution}
+						distortion={0.25}
+						color={getPaletteVariant(variant)}
+						transmission={0.9}
+						thickness={glassThickness ? glassThickness : 20}
+						anisotropy={1}
+						distortionScale={0}
+						temporalDistortion={0}
+						reflectivity={glassReflectivity ? glassReflectivity : 0.2}
+						roughness={0}
+					/>
+				</>
 			);
 
 		case 'shiny':

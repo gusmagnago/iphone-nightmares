@@ -14,6 +14,22 @@ const Camera = ({ position, nodes }: ObjectI & ContactsGLTFResult) => {
 		floor,
 	} = nodes;
 
+	// const clockGroupRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(
+	// 	null
+	// );
+	// const { camera } = useThree();
+	// const [initScale, setInitScale] = useState<THREE.Vector3 | number>(1);
+	// const [initMaterialPosition, setInitMaterialPosition] = useState(position);
+	// const [initMaterialRotation, setInitMaterialRotation] = useState<number[]>([
+	// 	0, 0, 0,
+	// ]);
+	// const [initTitlePosition, setInitTitlePosition] = useState<number[]>([
+	// 	2, -30, 0,
+	// ]);
+	// const [initTitleRotation, setInitTitleRotation] = useState<number[]>([
+	// 	0, 0, 0,
+	// ]);
+
 	const renderBars = (yVal: number) => {
 		const instancesVal = 10;
 		const instanceDistance = 12;
@@ -39,12 +55,33 @@ const Camera = ({ position, nodes }: ObjectI & ContactsGLTFResult) => {
 		return <>{instances}</>;
 	};
 
+	// const handleClick = (event: ThreeEvent<MouseEvent>) => {
+	// 	const rotationSpeed = 0.2;
+	// 	event.stopPropagation();
+
+	// 	camera.lookAt(0, 0, 0);
+
+	// 	if (clockGroupRef?.current) {
+	// 		clockGroupRef.current.rotation.x -= rotationSpeed;
+	// 		setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
+	// 		setInitMaterialPosition(arrayToVector3([0, -150, 50]));
+	// 		setInitTitleRotation([-90, Math.PI / 1, 0]);
+	// 		setInitTitlePosition([5, -60, 0]);
+	// 		setInitScale(2);
+	// 	}
+	// };
+
 	return (
-		<group name='contactsGroup' position={position}>
+		<group
+			name='contactsGroup'
+			position={position}
+			// ref={clockGroupRef}
+			// onClick={handleClick}
+		>
 			<MeshComponent
 				name='contactsTitle'
-				geometry={contactsTitle.geometry}
-				material={contactsTitle.material}
+				geometry={contactsTitle?.geometry}
+				material={contactsTitle?.material}
 				meshPosition={[2, -30, 0]}
 				materialType='plastic'
 				variant='white'
@@ -114,11 +151,7 @@ const Camera = ({ position, nodes }: ObjectI & ContactsGLTFResult) => {
 					/>
 				</group>
 			</group>
-			<Floor
-				position={[0, 0, 0]}
-				geometry={floor.geometry}
-				material={floor.material}
-			/>
+			<Floor geometry={floor.geometry} material={floor.material} />
 		</group>
 	);
 };

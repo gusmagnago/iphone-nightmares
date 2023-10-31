@@ -3,6 +3,7 @@ import * as THREE from 'three';
 export type FooterGLTFNodes = {
   footerBg: THREE.Mesh;
   peach: THREE.Mesh;
+    peach1: THREE.Mesh;
   leaf: THREE.Mesh;
   leafBase: THREE.Mesh;
   footerBoxTop: THREE.Mesh;

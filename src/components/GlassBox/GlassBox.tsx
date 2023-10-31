@@ -1,43 +1,24 @@
-import { ReactNode } from 'react';
-import * as THREE from 'three';
+import {  arrayToVector3 } from '../../utils';
 import MeshComponent from '../MeshComponent/MeshComponent';
-import { arrayToVector3 } from '../../utils';
-
-
-type GlassBoxProps =  {
-  geometries: {
-    footerBoxTop: THREE.BufferGeometry;
-    footerBoxGlass: THREE.BufferGeometry;
-    footerBoxLeg: THREE.BufferGeometry;
-    footerBoxBase: THREE.BufferGeometry;
-  };
-  materials: {
-    footerBoxTop: MaterialI
-    footerBoxGlass: MaterialI
-    footerBoxLeg: MaterialI
-    footerBoxBase: MaterialI
-  };
-  basePosition: number[]
-  position: number[]
-  children: ReactNode
-};
+import { GlassBoxProps } from './GlassBox.types';
 
 const GlassBox = ({
 	children,
 	position,
 	geometries,
 	materials,
-	basePosition,
 }: GlassBoxProps) => {
+	// const glassBoxRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(null);
+	// const { camera } = useThree();
 
+	// const [initMaterialPosition, setInitMaterialPosition] = useState(position);
+	// const [initMaterialRotation, setInitMaterialRotation] = useState<number[]>([
+	// 	0, 0, 0,
+	// ]);
+	// const [initScale, setInitScale] = useState<number>(1);
 
-	const {
-		footerBoxTop,
-		footerBoxGlass,
-		footerBoxLeg,
-		footerBoxBase,
-	} = geometries;
-
+	const { footerBoxTop, footerBoxGlass, footerBoxLeg, footerBoxBase } =
+    geometries;
 	const {
 		footerBoxTop: topMaterial,
 		footerBoxGlass: glassMaterial,
@@ -52,10 +33,25 @@ const GlassBox = ({
 		[-17.48, -17.25, 0],
 	];
 
-	const glassBoxPosition = arrayToVector3(position);
+	// const handleClick = (event: ThreeEvent<MouseEvent>) => {
+	// 	const rotationSpeed = 0.2;
+	// 	event.stopPropagation();
+
+	// 	camera.lookAt(0, 0, 0);
+
+	// 	if (glassBoxRef?.current) {
+	// 		glassBoxRef.current.rotation.x -= rotationSpeed;
+	// 		setInitMaterialRotation([Math.PI / -2, 0, 0]);
+	// 		setInitMaterialPosition([15, 200, 100]);
+	// 		setInitScale(2);
+	// 	}
+	// };
 
 	return (
-		<group position={glassBoxPosition}>
+		<group
+			position={arrayToVector3(position)}
+			// onClick={handleClick}
+		>
 			<group position={[-10.48, 3.75, 20.47]}>
 				{children}
 				<MeshComponent
@@ -73,7 +69,8 @@ const GlassBox = ({
 					meshPosition={[0.48, 0.25, -20]}
 					materialType='glass'
 					variant='greenEw'
-					glassThickness={5}
+					glassThickness={2}
+					glassReflectivity={0}
 				/>
 				<group name='boxLegs' position={[0, 0, 5]}>
 					{footerBoxLegsPosition.map((legPosition, index) => (
@@ -94,7 +91,7 @@ const GlassBox = ({
 				name='boxBase'
 				geometry={footerBoxBase}
 				material={baseMaterial}
-				meshPosition={basePosition}
+				meshPosition={[-10.22, 3, 0]}
 				materialType='plastic'
 				variant='black'
 			/>

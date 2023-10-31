@@ -9,6 +9,7 @@ export type MeshCompProps = {
   materialType?: MeshMaterialType;
   variant?: MeshMaterialVariant;
   glassThickness?: number;
+  glassReflectivity?: number;
 } & GeoMaterial;
 
 export type MeshMaterialType =
