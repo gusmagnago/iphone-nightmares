@@ -4,7 +4,7 @@ import eslintPlugin from 'vite-plugin-eslint';
 
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => {
+export default defineConfig(() => {
 	const config = {
 		plugins: [react(), eslintPlugin()],
 		base: '/',
@@ -12,9 +12,5 @@ export default defineConfig(({ command }) => {
 			port: 3000
 		}
 	};
-
-	if (command !== 'serve') {
-		config.base = '/iphone-nightmares/';
-	}
 	return config;
 });

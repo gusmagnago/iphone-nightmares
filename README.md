@@ -15,7 +15,7 @@ A 3d Model visualization project where the user can interact with the model view
 Once you've cloned the repository install the required dependencies:
 
 ```sh
-yarn 
+yarn
 ```
 
 ## Run
@@ -28,7 +28,6 @@ To run the project in development mode run:
 yarn start
 ```
 
-
 ## To Visit App:
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -38,13 +37,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - JavaScript
 - React
 - Typescript
-- Three.js 
+- Three.js
 - React-Three/Fiber
 - React-Three/Drei
 
 ## Try it out!
 
-<a href="https://gusmagnago.github.io/iphone-nightmares" target="_blank">Iphone Nightmares</a>
+<a href="https://iphone-nightmares.vercel.app/" target="_blank">Iphone Nightmares</a>
 
 ### Thank you 🎃
 
