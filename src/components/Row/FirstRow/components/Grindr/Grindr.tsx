@@ -1,9 +1,29 @@
+import {  useRef, useState } from 'react';
 import Doll from '../../../../Doll/Doll';
 import MeshComponent from '../../../../MeshComponent/MeshComponent';
 import Floor from '../../../Floor/Floor';
 import { GrindrGLTFResult } from '../../FirstRow.types';
+import { ThreeEvent, useThree } from '@react-three/fiber';
+import { arrayToEuler, arrayToVector3 } from '../../../../../utils';
 
 const Grindr = ({ position, nodes }: ObjectI & GrindrGLTFResult) => {
+	const grindrGroupRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(
+		null
+	);
+
+	const { camera } = useThree();
+	const [initScale, setInitScale] = useState<THREE.Vector3 | number>(1);
+	const [initMaterialPosition, setInitMaterialPosition] = useState(position);
+	const [initMaterialRotation, setInitMaterialRotation] = useState<number[]>([
+		0, 0, 0,
+	]);
+	const [initTitlePosition, setInitTitlePosition] = useState<number[]>([
+		5, -30, 0,
+	]);
+	const [initTitleRotation, setInitTitleRotation] = useState<number[]>([
+		0, 0, 0,
+	]);
+
 	const grindrMaskIrons = [
 		{ position: [-0.31, 4.8, -3.05] },
 		{ position: [10.53, -5.01, -3.05] },
@@ -18,16 +38,42 @@ const Grindr = ({ position, nodes }: ObjectI & GrindrGLTFResult) => {
 
 	const grindrMaskEyes = [
 		{ position: [-5, 0, 0], rotation: [0, 0, -0.3] },
-		{ position: [5, 0, 0], rotation: [-Math.PI, 0, 2.84]  },
+		{ position: [5, 0, 0], rotation: [-Math.PI, 0, 2.84] },
 	];
 
+	const handleClick = (event: ThreeEvent<MouseEvent>) => {
+		const rotationSpeed = 0.2;
+		event.stopPropagation();
+
+		camera.lookAt(0, 0, 0);
+
+		if (grindrGroupRef?.current) {
+			grindrGroupRef.current.rotation.x -= rotationSpeed;
+			setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
+			setInitMaterialPosition(arrayToVector3([0, -150, 50]));
+			setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
+			setInitMaterialPosition(arrayToVector3([0, -150, 50]));
+			setInitTitleRotation([-90, Math.PI / 1, 0]);
+			setInitTitlePosition([5, -60, 0]);
+			setInitScale(2);
+		}
+	};
+
 	return (
-		<group name='grindrGroup' position={position}>
+		<group
+			name='grindrGroup'
+			position={initMaterialPosition}
+			onClick={handleClick}
+			ref={grindrGroupRef}
+			rotation={arrayToEuler(initMaterialRotation)}
+			scale={initScale}
+		>
 			<MeshComponent
 				name='grindrTitle'
 				geometry={nodes?.grindrTitle.geometry}
 				material={nodes?.grindrTitle.material}
-				meshPosition={[5, -30, 0]}
+				meshPosition={initTitlePosition}
+				rotation={arrayToEuler(initTitleRotation)}
 				materialType='plastic'
 				variant='white'
 			/>

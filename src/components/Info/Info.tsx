@@ -13,7 +13,7 @@ const Info = ({ nodes }: InfoGLTFResult) => {
 	];
 
 	return (
-		<group name='topInfos' position={[0, 250, 25]}>
+		<group name='topInfos' position={[0, 246, 20]}>
 			<group name='seringes' position={[101.91, 0, -2.66]}>
 				{seringeCircles.map(({ position }, index) => (
 					<MeshComponent

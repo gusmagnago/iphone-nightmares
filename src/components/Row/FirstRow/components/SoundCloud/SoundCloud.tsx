@@ -1,8 +1,27 @@
 import MeshComponent from '../../../../MeshComponent/MeshComponent';
 import { SoundCloudGLTFResult } from '../../FirstRow.types';
 import Floor from '../../../Floor/Floor';
+import { useRef, useState } from 'react';
+import { ThreeEvent, useThree } from '@react-three/fiber';
+import { arrayToEuler, arrayToVector3 } from '../../../../../utils';
 
 const SoundCloud = ({ position, nodes }: ObjectI & SoundCloudGLTFResult) => {
+	const SoundCloudGroupRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(
+		null
+	);
+	const { camera } = useThree();
+	const [initScale, setInitScale] = useState<THREE.Vector3 | number>(1);
+	const [initMaterialPosition, setInitMaterialPosition] = useState(position);
+	const [initMaterialRotation, setInitMaterialRotation] = useState<number[]>([
+		0, 0, 0,
+	]);
+	const [initTitlePosition, setInitTitlePosition] = useState<number[]>([
+		0, -30, 0,
+	]);
+	const [initTitleRotation, setInitTitleRotation] = useState<number[]>([
+		0, 0, 0,
+	]);
+
 	const soundClouds = [
 		{
 			geometry: nodes?.soundCloudCloud.geometry,
@@ -70,13 +89,37 @@ const SoundCloud = ({ position, nodes }: ObjectI & SoundCloudGLTFResult) => {
 		},
 	];
 
+
+	const handleClick = (event: ThreeEvent<MouseEvent>) => {
+		const rotationSpeed = 0.2;
+		event.stopPropagation();
+
+		camera.lookAt(0, 0, 0);
+
+		if (SoundCloudGroupRef?.current) {
+			SoundCloudGroupRef.current.rotation.x -= rotationSpeed;
+			setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
+			setInitMaterialPosition(arrayToVector3([0, -150, 50]));
+			setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
+			setInitMaterialPosition(arrayToVector3([0, -150, 50]));
+			setInitTitleRotation([-90, Math.PI / 1, 0]);
+			setInitTitlePosition([5, -60, 0]);
+			setInitScale(2);
+		}
+	};
+
 	return (
-		<group name='soundCloudGroup' position={position}>
+		<group name='soundCloudGroup' ref={SoundCloudGroupRef}
+			position={initMaterialPosition}
+			onClick={handleClick}
+			rotation={arrayToEuler(initMaterialRotation)}
+			scale={initScale}>
 			<MeshComponent
 				name='SoundCloudTitle'
 				geometry={nodes?.SoundCloudTitle.geometry}
 				material={nodes?.SoundCloudTitle.material}
-				meshPosition={[0, -30, 0]}
+				meshPosition={initTitlePosition}
+				rotation={arrayToEuler(initTitleRotation)}
 				materialType='plastic'
 				variant='white'
 			/>

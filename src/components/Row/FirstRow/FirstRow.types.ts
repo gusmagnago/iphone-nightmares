@@ -38,6 +38,8 @@ export type XGLTFNodes = {
   xBottleTopBase: THREE.Mesh;
   xBottleBody: THREE.Mesh;
   xBottleLettersItem: THREE.Mesh;
+  xBottleLettersItem1: THREE.Mesh;
+  xBottleLettersItem2: THREE.Mesh;
   xBottleX: THREE.Mesh;
   xBottleXInner: THREE.Mesh;
   xBottleSkullHead: THREE.Mesh;

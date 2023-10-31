@@ -108,7 +108,6 @@ const MeshComponent = ({
 			position={arrayToVector3(meshPosition)}
 			rotation={arrayToEuler(meshRotation)}
 			scale={scale}
-			onClick={(e) => console.log('click', e.target)}
 		>
 			{children}
 			{materialType && variant && applyMaterial()}

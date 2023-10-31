@@ -1,16 +1,70 @@
+import * as THREE from 'three';
+
 import MeshComponent from '../../../../MeshComponent/MeshComponent';
 import Floor from '../../../Floor/Floor';
 import { XGLTFResult } from '../../FirstRow.types';
+import { useRef, useState } from 'react';
+import { arrayToEuler, arrayToVector3 } from '../../../../../utils';
+
+import { ThreeEvent, useThree } from '@react-three/fiber';
 
 const X = ({ position, nodes }: ObjectI & XGLTFResult) => {
+	const xGroupRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(null);
+	const { camera } = useThree();
+	const [initScale, setInitScale] = useState<THREE.Vector3 | number>(1);
+	const [initMaterialPosition, setInitMaterialPosition] = useState(position);
+	const [initMaterialRotation, setInitMaterialRotation] = useState<number[]>([
+		0, 0, 0,
+	]);
+	const [initTitlePosition, setInitTitlePosition] = useState<number[]>([
+		0, -30, 0,
+	]);
+	const [initTitleRotation, setInitTitleRotation] = useState<number[]>([
+		0, 0, 0,
+	]);
+
+	const handleClick = (event: ThreeEvent<MouseEvent>) => {
+		const rotationSpeed = 0.2;
+		event.stopPropagation();
+
+		camera.lookAt(0, 0, 0);
+
+		if (xGroupRef?.current) {
+			xGroupRef.current.rotation.x -= rotationSpeed;
+			setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
+			setInitMaterialPosition(arrayToVector3([0, -150, 50]));
+			setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
+			setInitMaterialPosition(arrayToVector3([0, -150, 50]));
+			setInitTitleRotation([-90, Math.PI / 1, 0]);
+			setInitTitlePosition([0, -60, 0]);
+			setInitScale(2);
+		}
+	};
+
+	// const onClickHandler = (event: ThreeEvent<MouseEvent>) => {
+	// 	handleClick(event, xGroupRef);
+	// 	setInitMaterialRotation([Math.PI / -2.5, 0, 0]);
+	// 	setInitMaterialPosition(arrayToVector3([0, -150, 50]));
+	// 	setInitTitleRotation([-90, Math.PI / 1, 0]);
+	// 	setInitTitlePosition([0, -60, 0]);
+	// };
+
 	return (
-		<group name='xGroup' position={position}>
+		<group
+			name='xGroup'
+			position={initMaterialPosition}
+			onClick={handleClick}
+			ref={xGroupRef}
+			rotation={arrayToEuler(initMaterialRotation)}
+			scale={initScale}
+		>
 			<group name='xBottleGroup' position={[0, 0, 10]}>
 				<MeshComponent
 					name='xBottleTitle'
 					geometry={nodes?.xBottleTitle.geometry}
 					material={nodes?.xBottleTitle.material}
-					meshPosition={[0, -30, 0]}
+					meshPosition={initTitlePosition}
+					rotation={arrayToEuler(initTitleRotation)}
 					materialType='plastic'
 					variant='white'
 				/>
@@ -25,8 +79,10 @@ const X = ({ position, nodes }: ObjectI & XGLTFResult) => {
 							name='xBottleTagBg'
 							geometry={nodes?.xBottleTagBg.geometry}
 							material={nodes?.xBottleTagBg.material}
-							meshPosition={[0, 0, -7.63]}
+							meshPosition={[0, 0, -8]}
 							meshScale={[1, 1, 1.8]}
+							materialType='plastic'
+							variant='purple'
 						/>
 						<MeshComponent
 							name='xBottleTagItemLogo'
@@ -36,7 +92,7 @@ const X = ({ position, nodes }: ObjectI & XGLTFResult) => {
 						>
 							<group
 								name='xBottleTagSkull'
-								position={[-0.14, -1.51, 0.79]}
+								position={[-0.14, -1.51, -2]}
 								rotation={[0.26, 0, 0]}
 								scale={[0.15, 0.12, 0.07]}
 							>
@@ -49,7 +105,7 @@ const X = ({ position, nodes }: ObjectI & XGLTFResult) => {
 										name='xBottleSkullTeethDown'
 										geometry={nodes?.xBottleSkullTeethDown.geometry}
 										material={nodes?.xBottleSkullTeethDown.material}
-										meshPosition={[-0.07, -43.67, -0.88]}
+										meshPosition={[-0.07, -43.67, -0.8]}
 										meshRotation={[0, 0, 0]}
 										meshScale={1.12}
 										materialType='plastic'
@@ -85,38 +141,28 @@ const X = ({ position, nodes }: ObjectI & XGLTFResult) => {
 									variant='greenEw'
 								/>
 							</group>
-							{/* <MeshComponent
-								name='xBottleXInner'
-								geometry={nodes?.xBottleInner.geometry}
-								material={nodes?.xBottleInner.material}
-								meshPosition={[-19.13, 24.3, -4]}
-								meshScale={[2.65, 1.87, 1]}
-							/>
-							<MeshComponent
-								name='xBottleX'
-								geometry={nodes?.xBottleX.geometry}
-								material={nodes?.xBottleX.material}
-								meshPosition={[-0.27, 9.48, -2.18]}
-								meshScale={[2.65, 1.87, 1.02]}
-							/> */}
 						</MeshComponent>
 					</group>
-					<group name='xBottleLettersGroup' position={[0.56, -15.11, -3.29]}>
+					<group name='xBottleLettersGroup' position={[0.56, -15.11, -5]}>
 						<MeshComponent
 							name='xBottleLettersItem'
-							geometry={nodes?.xBottleLettersItem.geometry}
+							geometry={nodes?.xBottleLettersItem1.geometry}
 							material={nodes?.xBottleLettersItem.material}
-							meshPosition={[20.42, -9.61, 4.38]}
+							meshPosition={[20.42, -9.61, 0]}
 							meshRotation={[0, 0, -0.03]}
 							meshScale={[1, 1, 1.79]}
+							materialType='plastic'
+							variant='redBloody'
 						/>
 						<MeshComponent
 							name='xBottleLettersItem1'
-							geometry={nodes?.xBottleLettersItem.geometry}
+							geometry={nodes?.xBottleLettersItem2.geometry}
 							material={nodes?.xBottleLettersItem.material}
 							meshPosition={[0, 4.6, 0]}
 							meshRotation={[0, 0, 0.05]}
 							meshScale={[1, 1, 1.79]}
+							materialType='plastic'
+							variant='redBloody'
 						/>
 						<MeshComponent
 							name='xBottleLettersItem2'
@@ -125,6 +171,8 @@ const X = ({ position, nodes }: ObjectI & XGLTFResult) => {
 							meshPosition={[0, -4.16, 0]}
 							meshRotation={[0, 0, 0.05]}
 							meshScale={1}
+							materialType='plastic'
+							variant='redBloody'
 						/>
 					</group>
 				</group>
@@ -160,7 +208,7 @@ const X = ({ position, nodes }: ObjectI & XGLTFResult) => {
 					variant='white'
 				/>
 			</group>
-			
+
 			<Floor
 				position={[0, 0, 0]}
 				geometry={nodes?.floor.geometry}
