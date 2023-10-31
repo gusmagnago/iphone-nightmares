@@ -8,6 +8,9 @@ export default defineConfig(({ command }) => {
 	const config = {
 		plugins: [react(), eslintPlugin()],
 		base: '/',
+		server : {
+			port: 3000
+		}
 	};
 
 	if (command !== 'serve') {

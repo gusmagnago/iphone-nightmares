@@ -1,28 +1,33 @@
+import * as THREE from 'three';
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 
-import {  OrthographicCamera } from '@react-three/drei';
+import {  OrbitControls } from '@react-three/drei';
 
 import Scene from './components/Scene/Scene';
+import { palette } from './materials';
+
 
 export const App = () => {
 	return (
-		<>
-			<Suspense fallback={null}>
-				<Canvas>
-					<color attach='background' args={['#e5e5e5']} />
-					<hemisphereLight intensity={1.5} color='#eaeaea' />
-					<Scene />
-					<OrthographicCamera makeDefault={true} far={10000} near={-50000} />
-					{/* <OrbitControls
-                        autoRotateSpeed={0.85}
-                        zoomSpeed={0.75}
-                        minPolarAngle={Math.PI / 2}
-                        maxPolarAngle={Math.PI / 2}
-                        /> */}
-				</Canvas>
-			</Suspense>
-		</>
+		<Suspense fallback={null}>
+			<Canvas
+				camera={{
+					far: 10000,
+					position: new THREE.Vector3(0, -10, 500),
+				}}
+				dpr={window.devicePixelRatio}
+				shadows
+				flat
+				linear
+			>
+				<color attach='background' args={['#eaeaea']} />
+				<hemisphereLight intensity={2} color={palette.glass} />
+				<directionalLight color={palette.light} intensity={1.5} position={[1, 1, 1]}/>
+				<Scene />
+				<OrbitControls />
+			</Canvas>
+		</Suspense>
 	);
 };
 
