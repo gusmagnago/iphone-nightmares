@@ -60,6 +60,7 @@ const BackgroundImage = ({ nodes }: BGGLTFResult) => {
 					nodes={nodes as JackOLanternGLTFNodes}
 				/>
 			))}
+            
 			<group position={[0, -50, 0]}>
 				<Moon
 					position={arrayToVector3([-30, 0, 0])}
